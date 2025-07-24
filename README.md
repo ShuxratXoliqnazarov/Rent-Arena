@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏟️ RentArena — MVP-сайт для бронирования мини-стадионов
 
-## Getting Started
+## 📌 О проекте
 
-First, run the development server:
+**RentArena** — это минимально жизнеспособная версия (MVP) сайта, где пользователи могут:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Найти мини-стадион или футзал в своём районе
+- Посмотреть фотографии поля
+- Узнать адрес
+- Связаться с администратором по телефону
+- Прочитать отзывы других игроков
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+⚠️ Пока что **бронь через сайт отсутствует**, пользователи бронируют напрямую по телефону.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧱 Страницы сайта
 
-## Learn More
+| Страница       | Назначение                                                 |
+| -------------- | ---------------------------------------------------------- |
+| `/` (Главная)  | Вступление, кнопка "Смотреть поля", популярные поля        |
+| `/fields`      | Каталог всех доступных полей                               |
+| `/fields/[id]` | Страница одного поля с фото, адресом, телефоном и отзывами |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🖼️ Что содержит каждая карточка поля
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 📸 Фото поля
+- ⚽ Название
+- 📍 Район / Адрес
+- 📞 Телефон администратора
+- 📋 Короткое описание
+- ✍️ Отзывы
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧑‍💻 Роли пользователей
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Гость**: может смотреть поля и читать отзывы
+- **Админ**: пока вручную редактирует JSON-файлы с полями и отзывами
+
+---
+
+## 🛠️ Используемые технологии
+
+- [Next.js](https://nextjs.org/) — фреймворк для React
+- [Tailwind CSS](https://tailwindcss.com/) или MUI — стилизация компонентов
+- `fields.json` — временное хранилище данных о полях
+- `reviews.json` — отзывы пользователей (опционально)
+- [Vercel](https://vercel.com/) — хостинг
+
+## ✅ MVP-функционал
+
+- [x] Список всех мини-стадионов
+- [x] Фото, адрес, телефон администратора
+- [x] Чтение отзывов
+- [ ] Онлайн-бронирование (будет позже)
+- [ ] Личный кабинет (будет позже)
+- [ ] Админ-панель (будет позже)
+
+---
+
+Developer: Shuxrat
+# Rent-Arena
