@@ -39,7 +39,7 @@ export default function ByIdPage() {
 						{arena.image.length > 1 && (
 							<div className='p-4'>
 								<div className='grid grid-cols-4 gap-2'>
-									{arena.image.slice(1).map((image, index) => (
+									{arena.image.slice(1).map((image: string, index: number) => (
 										<img
 											key={index}
 											src={image || '/placeholder.svg'}
@@ -99,7 +99,7 @@ export default function ByIdPage() {
 							</div>
 
 							<div className='flex flex-wrap gap-2 mb-6'>
-								{arena.features.map(feature => (
+								{arena.features.map((feature: string) => (
 									<Chip
 										key={feature}
 										label={feature}
