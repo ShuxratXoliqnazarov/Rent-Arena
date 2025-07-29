@@ -13,27 +13,17 @@ interface Arena {
 interface HomeStore {
 	data: Arena[]
 	getData: () => void
-	// byId: Arena[]
-	// getById: (id: string | number) => any
 }
 
-export const useHomeStore = create<HomeStore>((set) => ({
+export const useHomeStore = create<HomeStore>(set => ({
 	data: [],
-	// byId: [],
 	getData: async () => {
 		try {
-			let response = await axios.get('https://629d11159dced364.mokky.dev/arena')
-			console.log('responce: ', response)
+			const response = await axios.get('https://629d11159dced364.mokky.dev/arena')
+			// console.log('responce: ', response)
 			set({ data: response.data })
 		} catch (error) {
 			console.log(error)
 		}
 	},
-	// getById: async id => {
-	// 	try {
-
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// },
 }))
