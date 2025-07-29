@@ -19,40 +19,7 @@ import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
 import Link from 'next/link'
 
-// const arena = [
-// 	{
-// 		id: 1,
-// 		name: 'Арена Спорт',
-// 		location: 'Центральный район',
-// 		price: '2500',
-// 		image: '/assets/airportArena.png',
-// 		features: ['Искусственное покрытие', 'Освещение', 'Раздевалки'],
-// 		adminPhone: '+7 (999) 123-45-67',
-// 		adminName: 'Алексей',
-// 	},
-// 	{
-// 		id: 2,
-// 		name: 'Футбол Сити',
-// 		location: 'Северный район',
-// 		price: '2000',
-// 		image: '/assets/frunzeArena.png',
-// 		features: ['Крытое поле', 'Парковка', 'Душевые'],
-// 		adminPhone: '+7 (999) 234-56-78',
-// 		adminName: 'Дмитрий',
-// 	},
-// 	{
-// 		id: 3,
-// 		name: 'Стадион Победа',
-// 		location: 'Южный район',
-// 		price: '3000',
-// 		image: '/assets/frunze2.png',
-// 		features: ['Натуральный газон', 'Трибуны', 'VIP зона'],
-// 		adminPhone: '+7 (999) 345-67-89',
-// 		adminName: 'Сергей',
-// 	},
-// ]
-
-export default function Arena() {
+export default function AllArena() {
 	const { getData, data } = useHomeStore()
 
 	useEffect(() => {
@@ -63,7 +30,7 @@ export default function Arena() {
 		<>
 			<Box className='py-16 px-4'>
 				<Box className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{data.slice(0, 3).map(el => (
+					{data?.map(el => (
 						<Card
 							key={el.id}
 							className='overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 shadow-lg group cursor-pointer flex flex-col justify-between '
@@ -124,29 +91,19 @@ export default function Arena() {
 										</Box>
 									</Box>
 
-									<Button
-										variant='contained'
-										fullWidth
-										className='bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300'
-									>
-										Подробнее
-									</Button>
+									<Link href={`/${el.id}`}>
+										<Button
+											variant='contained'
+											fullWidth
+											className='bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 hover:scale-102 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-[0.5s] ease-in-out'
+										>
+											Подробнее
+										</Button>
+									</Link>
 								</Box>
 							</CardContent>
 						</Card>
 					))}
-				</Box>
-
-				<Box className='text-center mt-12'>
-					<Link href={'/all-arenas'}>
-						<Button
-							variant='outlined'
-							size='large'
-							className='border-emerald-200 text-emerald-700 hover:bg-emerald-50 bg-transparent hover:scale-105 transition-all duration-300'
-						>
-							Посмотреть все поля
-						</Button>
-					</Link>
 				</Box>
 			</Box>
 		</>

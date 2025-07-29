@@ -1,5 +1,4 @@
 'use client'
-import './sec_2-article.css'
 import {
 	LocationOn as LocationIcon,
 	Schedule as ClockIcon,
