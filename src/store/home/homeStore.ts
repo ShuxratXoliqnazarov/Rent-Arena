@@ -6,18 +6,18 @@ interface Arena {
 	name: string
 	adminPhone: string | number
 	location: string
-	features: any
-	image: any
+	features: string[]
+	image: string[]
 	category: string
 }
 interface HomeStore {
 	data: Arena[]
-	getData: () => any
+	getData: () => void
 	// byId: Arena[]
 	// getById: (id: string | number) => any
 }
 
-export const useHomeStore = create<HomeStore>((set, get) => ({
+export const useHomeStore = create<HomeStore>((set) => ({
 	data: [],
 	// byId: [],
 	getData: async () => {
