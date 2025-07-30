@@ -9,6 +9,7 @@ interface Arena {
 	features: string[]
 	image: string[]
 	category: string
+	description: string[]
 }
 interface HomeStore {
 	data: Arena[]
@@ -19,7 +20,9 @@ export const useHomeStore = create<HomeStore>(set => ({
 	data: [],
 	getData: async () => {
 		try {
-			const response = await axios.get('https://629d11159dced364.mokky.dev/arena')
+			const response = await axios.get(
+				'https://629d11159dced364.mokky.dev/arena'
+			)
 			// console.log('responce: ', response)
 			set({ data: response.data })
 		} catch (error) {

@@ -5,7 +5,7 @@ export default function AllArenas() {
 		<>
 			<section
 				style={{ margin: '150px auto' }}
-				className='md:max-w-[1200px] md:m-auto'
+				className=' all-arena_sec md:max-w-[1200px] md:m-auto'
 			>
 				<AllArena />
 			</section>

@@ -80,7 +80,8 @@ export default function Main() {
 					</div>
 				</section>
 
-				<section className='sec_4 md:max-w-[1200px] md:m-auto flex flex-col gap-5'>
+				{/* //! Swipper of PC */}
+				<section className='hidden  sec_4 md:max-w-[1200px] md:m-auto md:flex flex-col gap-5'>
 					<h1 className='text-center md:text-[40px] font-semibold'>
 						Выбери формат игры
 					</h1>
@@ -104,11 +105,14 @@ export default function Main() {
 							>
 								{data.slice(0).map(el => (
 									<SwiperSlide key={el.id} className='rounded-[20px] relative'>
-										<div className='absolute group: z-10 m-14  h-[25vh] mt-[90px] bg-black/50 rounded-[20px] w-[60%] '>
-											<h1 className='md:text-[35px] m-5 font-bold text-white md:mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
-												{el.name}
-											</h1>
-										</div>
+										<Link href={`/${el.id}`}>
+											<div className='absolute group: z-10 m-14  h-[25vh] mt-[90px] bg-black/50 rounded-[20px] w-[60%] '>
+												<h1 className='md:text-[35px] m-5 font-bold text-white md:mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
+													{el.name}
+												</h1>
+											</div>
+										</Link>
+
 										<img
 											src={el.image[0]}
 											alt={el.name}
@@ -133,6 +137,72 @@ export default function Main() {
 								<article className='mini_art  border md:h-[22vh] rounded-[20px] relative group'>
 									<div className='absolute w-[100%] bg-black/15 h-[22vh] text-white font-bold  rounded-[20px]'>
 										<h1 className='md:text-[35px] md:mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out'>
+											Мини стадионы
+										</h1>
+									</div>
+								</article>
+							</Link>
+						</aside>
+					</div>
+				</section>
+
+				{/* //! Sipper of Mobile */}
+				<section className='sec_4 md:max-w-[1200px] md:m-auto flex flex-col gap-5 md:hidden p-5'>
+					<h1 className='text-center text-[37px] font-semibold'>
+						Выбери формат игры
+					</h1>
+					<p className='text-center text-[18px]'>
+						Найди свою игру — в зале или на свежем воздухе
+					</p>
+
+					<div className=' flex flex-col-reverse gap-10 justify-between '>
+						<div className=' md:w-[60%]'>
+							<Swiper
+								modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+								spaceBetween={50}
+								slidesPerView={1}
+								navigation
+								autoplay={{ delay: 3000, disableOnInteraction: false }}
+								pagination={{ clickable: true }}
+								scrollbar={{ draggable: true }}
+								onSwiper={swiper => console.log(swiper)}
+								onSlideChange={() => console.log('slide change')}
+								className=' h-[50vh] rounded-[20px]'
+							>
+								{data.slice(0).map(el => (
+									<SwiperSlide key={el.id} className='rounded-[20px] relative'>
+										<Link href={`/${el.id}`}>
+											<div className='absolute group: z-10   h-[22vh] mt-[50px] bg-black/50 rounded-[20px] w-[80%] ml-[35px] '>
+												<h1 className='text-[28px] text-center m-5 font-bold text-white md:mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
+													{el.name}
+												</h1>
+											</div>
+										</Link>
+
+										<img
+											src={el.image[0]}
+											alt={el.name}
+											className='w-full h-full  rounded-[20px] '
+										/>
+									</SwiperSlide>
+								))}
+							</Swiper>
+						</div>
+						<aside className=' flex flex-col gap-7 justify-between text-center'>
+							<Link href={'/footzali'}>
+								<article className='footzal_art  h-[22vh] rounded-[20px] relative group'>
+									<div className='absolute w-[100%] bg-black/40 h-[22vh] text-white font-bold  rounded-[20px]'>
+										<h1 className='text-[35px] mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
+											Футзали
+										</h1>
+									</div>
+								</article>
+							</Link>
+
+							<Link href={'/stadioni'}>
+								<article className='mini_art  border h-[22vh] rounded-[20px] relative group'>
+									<div className='absolute w-[100%] bg-black/15 h-[22vh] text-white font-bold  rounded-[20px]'>
+										<h1 className='text-[35px] mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out'>
 											Мини стадионы
 										</h1>
 									</div>
@@ -171,10 +241,10 @@ export default function Main() {
 				</section>
 
 				<section className='sec_5 md:max-w-[1200px] flex flex-col gap-5 '>
-					<h1 className='text-center md:text-[40px] font-semibold'>
+					<h1 className='text-center md:text-[40px] text-[36px] font-semibold'>
 						Три простых шага до игры
 					</h1>
-					<p className='text-center md:text-[20px]'>
+					<p className='text-center md:text-[20px] text-[18px]'>
 						Процесс бронирования максимально упрощен.{' '}
 						<br className='hidden md:block' /> Всего несколько кликов отделяют
 						вас от игры на лучших полях города.

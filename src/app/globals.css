@@ -61,7 +61,8 @@ footer {
 
 	.sec_1 {
 		margin-top: 100px;
-		background-size: 370%;
+		background-size: 420%;
+		padding: 4px 20px;
 	}
 
 	.sec_2 {
@@ -70,8 +71,24 @@ footer {
 	.sec_3 {
 		padding: 30px 20px;
 	}
+	.sec_4 {
+		padding: 30px 20px;
+		margin-top: -20px;
+	}
+	.sec_5 {
+		padding: 30px 20px;
+		margin-top: -20px;
+	}
 
 	footer {
 		padding: 40px 20px;
+	}
+
+	.byId_sec {
+		padding: 30px 20px;
+	}
+
+	.all-arena_sec {
+		padding: 30px 20px;
 	}
 }
