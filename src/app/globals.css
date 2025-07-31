@@ -5,20 +5,24 @@
 }
 
 .sec_1 {
-	background-image: url('/assets/bg-of-arena.jpg');
+	/* background-image: url('/assets/bg-of-arena.jpg');
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 100%; */
+	background-color: grey;
 	height: 100vh;
-	padding: 5px 0px;
+	padding: 0px 0px;
 	width: 100%;
 }
 
+.magic_hero{
+	padding: -80px 0px;
+}
 .sec_2 {
 	padding: 60px 0px;
 }
 
 .sec_4 {
-	margin: 50px auto;
+	margin: 80px auto;
 }
 
 .sec_5 {
@@ -50,6 +54,14 @@
 	transition: all 0.3s ease;
 }
 
+.why {
+	margin: 80px auto;
+}
+
+.why_article {
+	padding: 20px;
+}
+
 footer {
 	padding: 40px 0px;
 }
@@ -78,6 +90,10 @@ footer {
 	.sec_5 {
 		padding: 30px 20px;
 		margin-top: -20px;
+	}
+	
+	.why {
+		padding: 30px 20px;
 	}
 
 	footer {
