@@ -1,5 +1,6 @@
 import { Box } from '@mui/material'
 import { ShineBorder } from '../shine-border/shine-border'
+import Image from 'next/image'
 
 const reasons = [
 	{
@@ -38,13 +39,12 @@ export default function WhyChooseUs() {
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
 					{reasons.map(reason => (
 						<ShineBorder key={reason.id}>
-							<Box
-								className=' rounded-[14px] '
-								
-							>
+							<Box className=' rounded-[14px] '>
 								<Box className='flex flex-col items-center text-center p-8 justify-between why_article'>
 									<div className='w-40 h-40 mb-4'>
-										<img
+										<Image
+											width={100}
+											height={100}
 											src={reason.image}
 											alt={reason.title}
 											className='w-full h-full object-contain'

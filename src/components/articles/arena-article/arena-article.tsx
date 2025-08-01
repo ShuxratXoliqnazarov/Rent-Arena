@@ -1,13 +1,6 @@
 'use client'
 
-import {
-	Box,
-	Typography,
-	Card,
-	CardContent,
-	Button,
-	Chip,
-} from '@mui/material'
+import { Box, Typography, Card, CardContent, Button, Chip } from '@mui/material'
 import {
 	LocationOn as LocationIcon,
 	Star as StarIcon,
@@ -17,7 +10,7 @@ import {
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
 import Link from 'next/link'
-
+import Image from 'next/image'
 
 export default function Arena() {
 	const { getData, data } = useHomeStore()
@@ -36,7 +29,9 @@ export default function Arena() {
 							className='overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 shadow-lg group cursor-pointer flex flex-col justify-between '
 						>
 							<Box className='relative overflow-hidden'>
-								<img
+								<Image
+									width={100}
+									height={100}
 									src={el.image[0]}
 									alt={el.name[0]}
 									className='w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700'

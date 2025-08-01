@@ -1,13 +1,6 @@
 'use client'
 
-import {
-	Box,
-	Typography,
-	Card,
-	CardContent,
-	Button,
-	Chip,
-} from '@mui/material'
+import { Box, Typography, Card, CardContent, Button, Chip } from '@mui/material'
 import {
 	LocationOn as LocationIcon,
 	Star as StarIcon,
@@ -26,6 +19,7 @@ import {
 	Pagination,
 	Scrollbar,
 } from 'swiper/modules'
+import Image from 'next/image'
 
 export default function ArenaSwip() {
 	const { getData, data } = useHomeStore()
@@ -52,7 +46,9 @@ export default function ArenaSwip() {
 						<SwiperSlide key={el.id}>
 							<Card className='overflow-hidden border-0 shadow-md hover:shadow-2xl rounded-xl group transition-all duration-500 bg-white'>
 								<Box className='relative overflow-hidden'>
-									<img
+									<Image
+										width={100}
+										height={100}
 										src={el.image[0]}
 										alt={el.name[0]}
 										className='w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105'

@@ -7,6 +7,7 @@ import StarIcon from '@mui/icons-material/Star'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import Image from 'next/image'
 
 export default function ByIdPage() {
 	const { getData, data } = useHomeStore()
@@ -25,7 +26,10 @@ export default function ByIdPage() {
 
 	return (
 		<>
-			<section className= 'byId_sec md:max-w-[1200px] ' style={{ margin: '120px auto' }}>
+			<section
+				className='byId_sec md:max-w-[1200px] '
+				style={{ margin: '120px auto' }}
+			>
 				<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 '>
 					<div className='lg:col-span-2 space-y-6'>
 						<Card
@@ -50,7 +54,9 @@ export default function ByIdPage() {
 										{arena.image
 											.slice(0)
 											.map((image: string, index: number) => (
-												<img
+												<Image
+													width={100}
+													height={100}
 													onClick={() => setImg(image)}
 													key={index}
 													src={image || '/placeholder.svg'}

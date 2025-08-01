@@ -169,37 +169,3 @@ export default function Main() {
 	)
 }
 
-{
-	/* <div className=' md:w-[60%]'>
-							<Swiper
-								modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-								spaceBetween={50}
-								slidesPerView={1}
-								navigation
-								autoplay={{ delay: 3000, disableOnInteraction: false }}
-								pagination={{ clickable: true }}
-								scrollbar={{ draggable: true }}
-								onSwiper={swiper => console.log(swiper)}
-								onSlideChange={() => console.log('slide change')}
-								className=' h-[50vh] rounded-[20px]'
-							>
-								{data.slice(0).map(el => (
-									<SwiperSlide key={el.id} className='rounded-[20px] relative'>
-										<Link href={`/${el.id}`}>
-											<div className='absolute group: z-10 m-14  h-[25vh] mt-[90px] bg-black/50 rounded-[20px] w-[60%] '>
-												<h1 className='md:text-[35px] m-5 font-bold text-white md:mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
-													{el.name}
-												</h1>
-											</div>
-										</Link>
-
-										<img
-											src={el.image[0]}
-											alt={el.name}
-											className='w-full h-full  rounded-[20px] '
-										/>
-									</SwiperSlide>
-								))}
-							</Swiper>
-						</div> */
-}
