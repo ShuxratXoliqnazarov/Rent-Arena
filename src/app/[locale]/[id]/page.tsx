@@ -3,7 +3,6 @@
 import { Card, CardContent, CardMedia, Chip, Button } from '@mui/material'
 import PhoneIcon from '@mui/icons-material/Phone'
 import MapIcon from '@mui/icons-material/Map'
-import StarIcon from '@mui/icons-material/Star'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
@@ -17,7 +16,7 @@ export default function ByIdPage() {
 	const { id } = useParams()
 	useEffect(() => {
 		getData()
-	}, [])
+	}, [getData])
 	const arena = data.find(el => el.id == id)
 
 	if (!arena) {

@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from '@/i18n/navigation'
-import { Select, MenuItem } from '@mui/material'
+import { Select, MenuItem, SelectChangeEvent } from '@mui/material'
 import { useLocale } from 'next-intl'
 
 export default function LanguageSwitcher() {
@@ -9,12 +9,12 @@ export default function LanguageSwitcher() {
   const pathname = usePathname()
   const currentLocale = useLocale() // правильно получаем текущий язык
 
-  const handleChange = (event: any) => {
-    const newLocale = event.target.value
 
-    // Просто меняем локаль, путь остаётся тем же
-    router.replace(pathname, { locale: newLocale })
-  }
+const handleChange = (event: SelectChangeEvent) => {
+  const newLocale = event.target.value
+  router.replace(pathname, { locale: newLocale })
+}
+
 
   return (
     <Select

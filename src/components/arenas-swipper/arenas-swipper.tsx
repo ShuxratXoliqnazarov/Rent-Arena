@@ -3,9 +3,7 @@
 import { Box, Typography, Card, CardContent, Button, Chip } from '@mui/material'
 import {
 	LocationOn as LocationIcon,
-	Star as StarIcon,
 	Phone as PhoneIcon,
-	PlayArrow as PlayIcon,
 } from '@mui/icons-material'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
@@ -26,7 +24,7 @@ export default function ArenaSwip() {
 
 	useEffect(() => {
 		getData()
-	}, [])
+	}, [getData])
 
 	return (
 		<>

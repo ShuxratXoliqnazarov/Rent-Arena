@@ -1,6 +1,6 @@
 'use client'
 
-import { Phone, PlayCircle, Search } from '@mui/icons-material'
+import { Phone, PlayCircle } from '@mui/icons-material'
 import { Box, Card, CardContent, Typography } from '@mui/material'
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'

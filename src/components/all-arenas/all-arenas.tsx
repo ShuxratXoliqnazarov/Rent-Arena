@@ -15,7 +15,7 @@ export default function AllArena() {
 
 	useEffect(() => {
 		getData()
-	}, [])
+	}, [getData])
 
 	return (
 		<>

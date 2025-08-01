@@ -18,28 +18,28 @@ const Layout = ({ children }: Props) => {
 	const [open, setOpen] = useState(false)
 
 	function toggleOpen() {
-		open ? setOpen(false) : setOpen(true)
+		setOpen(!open)
 	}
 
 	return (
 		<>
-			<header className='bg-black/5 backdrop-blur-sm fixed w-[100%] top-0 z-50'>
-				<nav className=' md:max-w-[1400px] md:m-auto flex flex-row justify-between items-center '>
+			<header className='bg-black/5 backdrop-blur-sm fixed w-full top-0 z-50'>
+				<nav className='md:max-w-[1400px] md:m-auto flex flex-row justify-between items-center'>
 					<Image
 						src={'/assets/logo.png'}
 						width={100}
 						height={100}
-						alt=''
+						alt='logo'
 						className='w-[90px] h-[90px]'
 					/>
-					<div className='md:flex items-center  gap-5  hidden'>
+					<div className='md:flex items-center gap-5 hidden'>
 						<p className='text-[20px] hover:text-[#459A65] hover:border-b hover:border-[#459A65]'>
 							Поля
 						</p>
 
-                 <LanguageSwitcher/>
+						<LanguageSwitcher />
 
-						<div className='flexa items-center gap-5'>
+						<div className='flex items-center gap-5'>
 							<Button
 								className='btn bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
 								sx={{ border: '1px solid black', color: 'black' }}
@@ -56,7 +56,7 @@ const Layout = ({ children }: Props) => {
 					</div>
 
 					<div className='block md:hidden'>
-						<Button color='inherit' onClick={toggleOpen} className=''>
+						<Button color='inherit' onClick={toggleOpen}>
 							<MenuIcon
 								sx={{ fontSize: '30px' }}
 								className='hover:text-[#0DA366]'
@@ -70,7 +70,7 @@ const Layout = ({ children }: Props) => {
 
 			<main className='flex-grow p-4 md:mt-[98px] mb-5'>{children}</main>
 
-			<footer className='bg-[#0F172A] text-white py-8 '>
+			<footer className='bg-[#0F172A] text-white py-8'>
 				<section className='md:max-w-[1400px] md:m-auto flex md:flex-row flex-col gap-8 md:gap-0 justify-between items-center'>
 					<ul className='flex flex-col gap-6'>
 						<li className='md:mb-6'>
@@ -90,19 +90,19 @@ const Layout = ({ children }: Props) => {
 						</li>
 						<li>
 							<p>
-								<LocalPhoneOutlinedIcon sx={{ color: '#0DA366' }} />
-								+992 991-991-905
+								<LocalPhoneOutlinedIcon sx={{ color: '#0DA366' }} /> +992
+								991-991-905
 							</p>
 						</li>
 						<li>
 							<p>
-								<AlternateEmailOutlinedIcon sx={{ color: '#0DA366' }} />
+								<AlternateEmailOutlinedIcon sx={{ color: '#0DA366' }} />{' '}
 								khiliqnazarovshuhrat@gmail.com
 							</p>
 						</li>
 					</ul>
 
-					<div className='flex justify-between w-[100%] md:w-[40%]'>
+					<div className='flex justify-between w-full md:w-[40%]'>
 						<ul className='flex flex-col gap-6'>
 							<li className='mb-6 font-bold'>Страницы</li>
 							<li className='hover:text-[#47d67d]'>
@@ -112,15 +112,14 @@ const Layout = ({ children }: Props) => {
 								<Link href={'/'}>Стадионы</Link>
 							</li>
 							<li className='hover:text-[#47d67d]'>
-								{' '}
-								<Link href={''}> О нас</Link>
+								<Link href={''}>О нас</Link>
 							</li>
 						</ul>
 						<ul className='flex flex-col gap-6'>
-							<li className='mb-6 font-bold'>Паддержка</li>
+							<li className='mb-6 font-bold'>Поддержка</li>
 							<li>Помощь</li>
 							<li>Контакты</li>
-							<li>Отзивы сайта</li>
+							<li>Отзывы сайта</li>
 						</ul>
 					</div>
 				</section>

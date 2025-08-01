@@ -1,4 +1,3 @@
-import FootzaliComp from '@/components/footzali/footzali'
 import StadioniComp from '@/components/stadioni/stadioni'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Link from 'next/link'
