@@ -24,7 +24,7 @@ import 'swiper/css/autoplay' //
 import { useTranslations } from 'next-intl'
 
 export default function Main() {
-	const { getData, data } = useHomeStore()
+	const { getData } = useHomeStore()
 
 	const t = useTranslations('home')
 

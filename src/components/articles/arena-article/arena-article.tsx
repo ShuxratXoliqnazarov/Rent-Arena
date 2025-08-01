@@ -2,7 +2,6 @@
 
 import {
 	Box,
-	Container,
 	Typography,
 	Card,
 	CardContent,
@@ -19,38 +18,6 @@ import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
 import Link from 'next/link'
 
-// const arena = [
-// 	{
-// 		id: 1,
-// 		name: 'Арена Спорт',
-// 		location: 'Центральный район',
-// 		price: '2500',
-// 		image: '/assets/airportArena.png',
-// 		features: ['Искусственное покрытие', 'Освещение', 'Раздевалки'],
-// 		adminPhone: '+7 (999) 123-45-67',
-// 		adminName: 'Алексей',
-// 	},
-// 	{
-// 		id: 2,
-// 		name: 'Футбол Сити',
-// 		location: 'Северный район',
-// 		price: '2000',
-// 		image: '/assets/frunzeArena.png',
-// 		features: ['Крытое поле', 'Парковка', 'Душевые'],
-// 		adminPhone: '+7 (999) 234-56-78',
-// 		adminName: 'Дмитрий',
-// 	},
-// 	{
-// 		id: 3,
-// 		name: 'Стадион Победа',
-// 		location: 'Южный район',
-// 		price: '3000',
-// 		image: '/assets/frunze2.png',
-// 		features: ['Натуральный газон', 'Трибуны', 'VIP зона'],
-// 		adminPhone: '+7 (999) 345-67-89',
-// 		adminName: 'Сергей',
-// 	},
-// ]
 
 export default function Arena() {
 	const { getData, data } = useHomeStore()

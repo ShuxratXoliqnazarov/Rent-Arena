@@ -2,7 +2,6 @@
 
 import {
 	Box,
-	Container,
 	Typography,
 	Card,
 	CardContent,
@@ -11,9 +10,7 @@ import {
 } from '@mui/material'
 import {
 	LocationOn as LocationIcon,
-	Star as StarIcon,
 	Phone as PhoneIcon,
-	PlayArrow as PlayIcon,
 } from '@mui/icons-material'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
