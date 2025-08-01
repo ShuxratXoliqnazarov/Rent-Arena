@@ -1,20 +1,21 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* @custom-variant dark (&:is(.dark *)); */
 
 * {
 	padding: 0;
 }
 
-.sec_1 {
-	/* background-image: url('/assets/bg-of-arena.jpg');
-	background-repeat: no-repeat;
-	background-size: 100%; */
-	background-color: grey;
-	height: 100vh;
-	padding: 0px 0px;
-	width: 100%;
+.btn {
+	padding: 5px 20px;
 }
 
-.magic_hero{
+.sec_1 {
+	margin: 110px auto;
+}
+
+.magic_hero {
 	padding: -80px 0px;
 }
 .sec_2 {
@@ -37,12 +38,12 @@
 }
 
 .footzal_art:hover {
-	box-shadow: 0px 0px 20px rgb(118, 118, 118);
+	box-shadow: 0px 0px 20px #fdc60069;
 	transform: scale(1.02);
 	transition: all 0.4s ease;
 }
 .mini_art:hover {
-	box-shadow: 0px 0px 20px rgb(118, 118, 118);
+	box-shadow: 0px 0px 20px #fdc60069;
 	transform: scale(1.02);
 	transition: all 0.4s ease;
 }
@@ -66,6 +67,40 @@ footer {
 	padding: 40px 0px;
 }
 
+.swiper-pagination-bullet {
+	background: #fff !important;
+	opacity: 0.5;
+	width: 12px;
+	height: 12px;
+	margin: 0 4px !important;
+	transition: 0.3s;
+}
+.swiper-pagination-bullet-active {
+	background: #facc15 !important;
+	opacity: 1;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fadeIn {
+	animation: fadeIn 1s ease forwards;
+}
+.delay-200 {
+	animation-delay: 0.2s;
+}
+.delay-300 {
+	animation-delay: 0.3s;
+}
+
 @media ((min-width: 320px) and (max-width:500px)) {
 	header {
 		padding: 0px 20px;
@@ -74,7 +109,7 @@ footer {
 	.sec_1 {
 		margin-top: 100px;
 		background-size: 420%;
-		padding: 4px 20px;
+		padding: 4px 0px;
 	}
 
 	.sec_2 {
@@ -91,7 +126,7 @@ footer {
 		padding: 30px 20px;
 		margin-top: -20px;
 	}
-	
+
 	.why {
 		padding: 30px 20px;
 	}
@@ -106,5 +141,31 @@ footer {
 
 	.all-arena_sec {
 		padding: 30px 20px;
+	}
+}
+
+.shine-border {
+	position: relative;
+	z-index: 0;
+	padding: 2px;
+	border-radius: 16px;
+	background: linear-gradient(130deg, #facc15, #ffffff, #facc15);
+	background-size: 400%;
+	animation: shine 4s linear infinite;
+}
+
+.shine-border > * {
+	background-color: white; /* или другой фон */
+	border-radius: 14px;
+	z-index: 1;
+	position: relative;
+}
+
+@keyframes shine {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 400% 50%;
 	}
 }

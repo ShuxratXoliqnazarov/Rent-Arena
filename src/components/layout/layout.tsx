@@ -1,8 +1,5 @@
 'use client'
 
-
-
-
 import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@mui/material'
@@ -11,6 +8,7 @@ import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlin
 import Link from 'next/link'
 import ClientMenu from '../menu/menu'
 import MenuIcon from '@mui/icons-material/Menu'
+import LanguageSwitcher from '../languageSwitcher/languageSwitcher'
 
 type Props = {
 	children: ReactNode
@@ -19,7 +17,7 @@ type Props = {
 const Layout = ({ children }: Props) => {
 	const [open, setOpen] = useState(false)
 
-	function toggleOpen(){
+	function toggleOpen() {
 		open ? setOpen(false) : setOpen(true)
 	}
 
@@ -32,17 +30,26 @@ const Layout = ({ children }: Props) => {
 						width={100}
 						height={100}
 						alt=''
-						className='w-[100px] h-[100px]'
+						className='w-[90px] h-[90px]'
 					/>
 					<div className='md:flex items-center  gap-5  hidden'>
 						<p className='text-[20px] hover:text-[#459A65] hover:border-b hover:border-[#459A65]'>
 							Поля
 						</p>
-						<div className='flex items-center gap-5'>
-							<Button sx={{ border: '1px solid #459A65', color: '#459A65' }}>
+
+                 <LanguageSwitcher/>
+
+						<div className='flexa items-center gap-5'>
+							<Button
+								className='btn bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
+								sx={{ border: '1px solid black', color: 'black' }}
+							>
 								Войти
 							</Button>
-							<Button sx={{ backgroundColor: '#10A865', color: 'white' }}>
+							<Button
+								className='btn bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
+								sx={{ backgroundColor: '#FDC700', color: 'black' }}
+							>
 								Регистрация
 							</Button>
 						</div>

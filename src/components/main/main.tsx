@@ -1,31 +1,56 @@
 'use client'
 
-import { Button } from '@mui/material'
 import './main.css'
 import Arena from '../articles/arena-article/arena-article'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import {
-	A11y,
-	Autoplay,
-	Navigation,
-	Pagination,
-	Scrollbar,
-} from 'swiper/modules'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import Image from 'next/image'
 import Steps from '../articles/sec_5-article/sec_5-article'
-import Link from 'next/link'
 import WhyChooseUs from '../why-rent-arena/why-rent-arena'
 import ArenaSwip from '../arenas-swipper/arenas-swipper'
 
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/autoplay' //
+import { useTranslations } from 'next-intl'
 
 export default function Main() {
 	const { getData, data } = useHomeStore()
+
+	const t = useTranslations('home')
+
+	const slides = [
+		{
+			id: 1,
+			image: '/assets/bg-of-arena.jpg',
+			title: t('first_baner_title'),
+			description:
+				'Мгновенное бронирование мини-стадионов и спортивных площадок рядом с вами. Легко, быстро и удобно.',
+		},
+		{
+			id: 2,
+			image: '/assets/bg-of-arena2.webp',
+			title: 'Играйте в Любую Погоду',
+			description:
+				'Открытые и закрытые площадки доступны для бронирования круглый год. Выберите свой идеальный вариант.',
+		},
+		{
+			id: 3,
+			image: '/assets/bg-of-arena3.jpeg',
+			title: 'Соберите Команду, Забронируйте Поле',
+			description:
+				'Идеальное место для тренировок, дружеских матчей и турниров. Начните играть уже сегодня!',
+		},
+	]
 
 	useEffect(() => {
 		getData()
@@ -34,63 +59,53 @@ export default function Main() {
 	return (
 		<>
 			<main>
-				<section className='sec_1 text-start'>
-					<div className='  md:max-w-[1200px] md:m-auto '>
-						<aside className='md:w-[60%]'>
-							<div className='text-white flex flex-col items-statrt gap-10 md:mt-[50px] '>
-								<h1 className='md:text-[65px] text-[46px] font-bold'>
-									Бронируй футбольные поля за пару кликов
-								</h1>
-								<p className='text-[28px] md:w-[90%]'>
-									Мы сделали бронирование стадионов максимально простым и
-									доступным. Забудь о звонках и сложных схемах —
-									<span className='font-semibold'> просто выбери поле, время и выходи на игру.</span>
-									<br className='hidden md:block' />
-									<span className='text-[#37C8A2]'>
-										10+ площадок уже ждут тебя!
-									</span>
-								</p>
-								<Link href={'/all-arenas'}>
-									<Button
-										sx={{
-											backgroundColor: '#0D9788',
-											color: 'white',
-											fontWeight: 'bold',
-											padding: '10px 20px',
-											fontSize: '18px',
-											borderRadius: '8px',
-											transition: 'all 0.3s ease',
-											'&:hover': {
-												transform: 'scale(1.02)',
-												boxShadow: '0px 0px 10px #0D9788',
-											},
-										}}
-									>
-										Найти поле для игры
-									</Button>
-								</Link>
-								{/* <div className='flex md:flex-row gap-[120px]'>
-									<div>
-										<h2 className='text-[30px]  hover:text-[#0D9788] font-bold'>
-											10+
-										</h2>
-										<p>Полей</p>
+				<section className='sec_1 relative md:max-w-[1200px] md:m-auto w-full h-[600px] md:h-[75vh] overflow-hidden rounded-[25px]'>
+					<Swiper
+						modules={[Navigation, Pagination, Autoplay]}
+						spaceBetween={10}
+						slidesPerView={1}
+						autoplay={{ delay: 3500, disableOnInteraction: false }}
+						speed={800}
+						pagination={{
+							clickable: true,
+						}}
+						loop={true}
+						className='w-full h-full'
+					>
+						{slides.map(slide => (
+							<SwiperSlide key={slide.id} className='rounded-[25px]'>
+								<div className='relative w-full h-full'>
+									<div
+										className='absolute inset-0 bg-cover bg-center rounded-[25px]'
+										style={{ backgroundImage: `url('${slide.image}')` }}
+										aria-label={slide.title}
+									></div>
+									<div className='absolute inset-0 bg-black/60 rounded-[25px]' />
+
+									<div className='absolute inset-0 z-10 md:w-[50%] flex flex-col items-start justify-center md:p-5 md:ml-[50px] md:mt-[70px] gap-5'>
+										<h1 className='text-white text-4xl md:text-6xl font-bold drop-shadow-xl animate-fadeIn'>
+											{slide.title}
+										</h1>
+										<p className='text-gray-200 mt-4 text-base md:text-lg leading-relaxed max-w-xl drop-shadow-md animate-fadeIn delay-200'>
+											{slide.description}
+										</p>
+										<Button
+											asChild
+											variant='outline'
+											size='lg'
+											className='btn relative z-20 bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
+										>
+											<Link href='/stadiums'>Посмотреть Стадионы</Link>
+										</Button>
 									</div>
-									<div>
-										<h2 className='text-[30px] font-bold hover:text-[#0D9788]'>
-											24/7
-										</h2>
-										<p>Поддержка</p>
-									</div>
-								</div> */}
-							</div>
-						</aside>
-					</div>
+								</div>
+							</SwiperSlide>
+						))}
+					</Swiper>
 				</section>
 
 				<WhyChooseUs />
 
-				{/* //! Swipper of PC */}
 				<section className='  sec_4 md:max-w-[1200px] md:m-auto flex flex-col gap-5'>
 					<h1 className='text-center md:text-[40px] text-[37px] font-semibold'>
 						Выбери формат игры
@@ -104,7 +119,7 @@ export default function Main() {
 							<Link href={'/footzali'}>
 								<article className='footzal_art h-[27vh] md:h-[35vh] rounded-[20px] relative group'>
 									<div className='absolute w-[100%] bg-black/40 h-[27vh] md:h-[35vh] text-white font-bold  rounded-[20px]'>
-										<h1 className='md:text-[45px] text-[37px] text-center mt-[70px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
+										<h1 className='md:text-[45px] text-[37px] text-center mt-[70px] group-hover:text-[#FDC700] transition-all duration-500 ease-in-out '>
 											Футзалы
 										</h1>
 									</div>
@@ -116,7 +131,7 @@ export default function Main() {
 							<Link href={'/stadioni'}>
 								<article className='mini_art  border h-[27vh] md:h-[35vh] rounded-[20px] relative group'>
 									<div className='absolute w-[100%] bg-black/15 h-[27vh] md:h-[35vh] text-white font-bold  rounded-[20px]'>
-										<h1 className='md:text-[45px] text-[37px] text-center mt-[70px]  group-hover:text-[#00B680] transition-all duration-500 ease-in-out'>
+										<h1 className='md:text-[45px] text-[37px] text-center mt-[70px]  group-hover:text-[#FDC700] transition-all duration-500 ease-in-out'>
 											Мини стадионы
 										</h1>
 									</div>
@@ -125,72 +140,6 @@ export default function Main() {
 						</aside>
 					</div>
 				</section>
-
-				{/* //! Sipper of Mobile */}
-				{/* <section className='sec_4 md:max-w-[1200px] md:m-auto flex flex-col gap-5 md:hidden p-5'>
-					<h1 className='text-center text-[37px] font-semibold'>
-						Выбери формат игры
-					</h1>
-					<p className='text-center text-[18px]'>
-						Найди свою игру — в зале или на свежем воздухе
-					</p>
-
-					<div className=' flex flex-col-reverse gap-10 justify-between '>
-						<div className=' md:w-[60%]'>
-							<Swiper
-								modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-								spaceBetween={50}
-								slidesPerView={1}
-								navigation
-								autoplay={{ delay: 3000, disableOnInteraction: false }}
-								pagination={{ clickable: true }}
-								scrollbar={{ draggable: true }}
-								onSwiper={swiper => console.log(swiper)}
-								onSlideChange={() => console.log('slide change')}
-								className=' h-[50vh] rounded-[20px]'
-							>
-								{data.slice(0).map(el => (
-									<SwiperSlide key={el.id} className='rounded-[20px] relative'>
-										<Link href={`/${el.id}`}>
-											<div className='absolute group: z-10   h-[22vh] mt-[50px] bg-black/50 rounded-[20px] w-[80%] ml-[35px] '>
-												<h1 className='text-[28px] text-center m-5 font-bold text-white md:mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
-													{el.name}
-												</h1>
-											</div>
-										</Link>
-
-										<img
-											src={el.image[0]}
-											alt={el.name}
-											className='w-full h-full  rounded-[20px] '
-										/>
-									</SwiperSlide>
-								))}
-							</Swiper>
-						</div>
-						<aside className=' flex flex-col gap-7 justify-between text-center'>
-							<Link href={'/footzali'}>
-								<article className='footzal_art  h-[22vh] rounded-[20px] relative group'>
-									<div className='absolute w-[100%] bg-black/40 h-[22vh] text-white font-bold  rounded-[20px]'>
-										<h1 className='text-[35px] mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out '>
-											Футзали
-										</h1>
-									</div>
-								</article>
-							</Link>
-
-							<Link href={'/stadioni'}>
-								<article className='mini_art  border h-[22vh] rounded-[20px] relative group'>
-									<div className='absolute w-[100%] bg-black/15 h-[22vh] text-white font-bold  rounded-[20px]'>
-										<h1 className='text-[35px] mt-[40px] group-hover:text-[#00B680] transition-all duration-500 ease-in-out'>
-											Мини стадионы
-										</h1>
-									</div>
-								</article>
-							</Link>
-						</aside>
-					</div>
-				</section> */}
 
 				<section className='sec_3 md:max-w-[1200px] md:m-auto flex flex-col gap-10'>
 					<h1 className='md:text-[50px] text-[40px] text-center font-semibold'>
