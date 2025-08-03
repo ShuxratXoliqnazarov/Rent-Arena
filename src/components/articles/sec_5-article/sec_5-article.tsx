@@ -4,86 +4,65 @@ import { Phone, PlayCircle } from '@mui/icons-material'
 import { Box, Card, CardContent, Typography } from '@mui/material'
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-
-const steps = [
-	{
-		step: '01',
-		icon: SearchOutlinedIcon,
-		title: 'Найдите поле',
-		description:
-			'Выберите подходящее поле из нашего каталога с фильтрами по району, цене и удобствам',
-	},
-	{
-		step: '02',
-		icon: Phone,
-		title: 'Позвоните администратору',
-		description:
-			'Свяжитесь с администратором поля по указанному номеру для уточнения деталей',
-	},
-	{
-		step: '03',
-		icon: PlayCircle,
-		title: 'Играйте и наслаждайтесь',
-		description:
-			'Приходите в назначенное время и наслаждайтесь игрой на качественном поле',
-	},
-]
+import { ShineBorder } from '@/components/shine-border/shine-border'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export default function Steps() {
+	const t = useTranslations('home')
+
+	const steps = [
+		{
+			step: '01',
+			image: '/assets/fast-search.png',
+			title: t('step_1_title'),
+			description: t('step_1_subtitle'),
+		},
+		{
+			step: '02',
+			image: '/assets/fast-call.png',
+			title: t('step_2_title'),
+			description: t('step_2_subtitle'),
+		},
+		{
+			step: '03',
+			image: '/assets/play.png',
+			title: t('step_3_title'),
+			description: t('step_3_subtitle'),
+		},
+	]
+
 	return (
 		<>
-			<div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-				{steps.map((step, index) => (
-					<Card
-						key={index}
-						sx={{
-							textAlign: 'center',
-							transition: 'transform 0.3s ease',
-							'&:hover': {
-								transform: 'translateY(-4px)',
-								transition: 'transform 0.3s ease',
-							},
-						}}
-					>
-						<CardContent sx={{ p: 4 }}>
-							<Box
-								sx={{
-									width: 64,
-									height: 64,
-									borderRadius: 3,
-									background: 'linear-gradient(135deg, #10B981, #06B6D4)', // как gradient-primary
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-									mx: 'auto',
-									mb: 3,
-									boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', // shadow-professional
-								}}
-							>
-								<step.icon sx={{ width: 32, height: 32, color: '#fff' }} />
-							</Box>
+			<section className='md:max-w-[1200px] md:m-auto why'>
+				<div className='max-w-6xl mx-auto text-center'>
+					<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+						{steps.map(reason => (
+							<ShineBorder key={reason.step}>
+								<Box className=' rounded-[14px] '>
+									<Box className='flex flex-col items-center text-center p-8 justify-between why_article'>
+										<div className='w-40 h-40 mb-4'>
+											<Image
+												width={100}
+												height={100}
+												src={reason.image}
+												alt={reason.title}
+												className='w-full h-full object-contain'
+											/>
+										</div>
 
-							<Typography
-								variant='body2'
-								sx={{ fontWeight: 'bold', color: 'emerald.main', mb: 1 , fontSize:'18px' }}
-							>
-								шаг {step.step}
-							</Typography>
+										<h1 className='font-semibold md:text-lg text-[20px] text-gray-800'>
+											{reason.title}
+										</h1>
 
-							<Typography
-								variant='h6'
-								sx={{ fontWeight: 'bold', color: 'slate.900', mb: 2 }}
-							>
-								{step.title}
-							</Typography>
-
-							<Typography sx={{ color: 'slate.600', lineHeight: 1.6 }}>
-								{step.description}
-							</Typography>
-						</CardContent>
-					</Card>
-				))}
-			</div>
+										<p className='text-gray-600 mt-2'>{reason.description}</p>
+									</Box>
+								</Box>
+							</ShineBorder>
+						))}
+					</div>
+				</div>
+			</section>
 		</>
 	)
 }

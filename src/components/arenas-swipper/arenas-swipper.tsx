@@ -1,15 +1,10 @@
 'use client'
 
-import { Box, Typography, Card, CardContent, Button, Chip } from '@mui/material'
-import {
-	LocationOn as LocationIcon,
-	Phone as PhoneIcon,
-} from '@mui/icons-material'
-import { useHomeStore } from '@/store/home/homeStore'
+import { Card, CardContent, Typography, Button, Chip } from '@mui/material'
+import { LocationOn, Phone } from '@mui/icons-material'
 import { useEffect } from 'react'
-import Link from 'next/link'
+import { useHomeStore } from '@/store/home/homeStore'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
 import {
 	A11y,
 	Autoplay,
@@ -17,7 +12,9 @@ import {
 	Pagination,
 	Scrollbar,
 } from 'swiper/modules'
+import Link from 'next/link'
 import Image from 'next/image'
+import 'swiper/css'
 
 export default function ArenaSwip() {
 	const { getData, data } = useHomeStore()
@@ -27,94 +24,127 @@ export default function ArenaSwip() {
 	}, [getData])
 
 	return (
-		<>
-			<Box className='py-16 px-4'>
-				<Swiper
-					modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-					spaceBetween={20}
-					slidesPerView={1}
-					autoplay={{ delay: 3000, disableOnInteraction: false }}
-					breakpoints={{
-						640: { slidesPerView: 1 },
-						768: { slidesPerView: 2 },
-						1024: { slidesPerView: 3 },
-					}}
-				>
-					{data.map(el => (
-						<SwiperSlide key={el.id}>
-							<Card className='overflow-hidden border-0 shadow-md hover:shadow-2xl rounded-xl group transition-all duration-500 bg-white'>
-								<Box className='relative overflow-hidden'>
+		<div className=' py-16 px-4 md:h-[80vh]'>
+			<Swiper
+				modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+				spaceBetween={20}
+				slidesPerView={1}
+				autoplay={{ delay: 3000, disableOnInteraction: false }}
+				breakpoints={{
+					640: { slidesPerView: 1 },
+					768: { slidesPerView: 2 },
+					1024: { slidesPerView: 3 },
+				}}
+			>
+				{data.map(el => (
+					<SwiperSlide key={el.id}>
+						<div className=' rounded-2xl hover:border-[#FDC700]    border-gray-200 border-[1.1px]  transition-all duration-300 overflow-hidden group flex flex-col  h-[75vh]'>
+							<div className='relative h-[70vh] w-full'>
+								<Link href={`/${el.id}`}>
 									<Image
-										width={100}
-										height={100}
 										src={el.image[0]}
-										alt={el.name[0]}
-										className='w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105'
+										alt={el.name}
+										fill
+										className='object-cover w-full h-full transition-transform duration-500 group-hover:scale-103'
 									/>
-								</Box>
-								<CardContent className='p-5 transition-all duration-300 group-hover:bg-yellow-50'>
-									<Box className='flex items-start justify-between mb-3'>
-										<Typography
-											variant='h6'
-											className='text-2xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300'
-										>
-											{el.name}
-										</Typography>
-									</Box>
-									<Box className='flex items-center text-gray-600 mb-4 group-hover:text-yellow-700 transition-colors duration-300'>
-										<LocationIcon className='mr-2 text-yellow-600' />
-										<Typography className='text-sm font-medium'>
-											{el.location}
-										</Typography>
-									</Box>
+									{/* <div className='absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent'></div> */}
+								</Link>
+							</div>
 
-									<Box className='flex flex-wrap gap-2 mb-5'>
+							<CardContent className='p-6 flex flex-col gap-5 h-full'>
+								<div className='space-y-3 mb-5 flex flex-col justify-between  h-[22vh] '>
+									<Typography
+										variant='h6'
+										className='text-xl font-bold text-gray-900  transition-colors'
+									>
+										{el.name}
+									</Typography>
+
+									<div className='flex items-start text-sm text-gray-600'>
+										<LocationOn className='text-yellow-500 mr-2 mt-0.5' />
+										<span>{el.location}</span>
+									</div>
+
+									<div className='flex flex-wrap gap-2'>
 										{el.features.map((feature: string) => (
 											<Chip
 												key={feature}
 												label={feature}
 												size='small'
-												className='bg-yellow-100 text-yellow-800 text-xs font-medium hover:bg-yellow-200 transition-all duration-300 hover:scale-105'
+												className='bg-yellow-100 text-yellow-800 hover:bg-yellow-200 transition-all duration-200 text-xs'
 											/>
 										))}
-									</Box>
+									</div>
+								</div>
 
-									<Box className='space-y-3'>
-										<Box className='bg-yellow-50 p-3 rounded-lg border border-yellow-200 shadow-sm'>
-											<Box
-												component='a'
-												className='flex items-center space-x-2 text-yellow-800 hover:text-yellow-900 font-semibold transition-all duration-300 no-underline'
-											>
-												<PhoneIcon className='text-lg' />
-												<Typography>{el.adminPhone}</Typography>
-											</Box>
-										</Box>
+								<div className='mt-auto space-y-4'>
+									<div className='flex items-center gap-2 text-sm font-medium   p-3 rounded-xl '>
+										<Phone fontSize='small' />
+										<a href={`tel:${el.adminPhone}`} className='no-underline'>
+											{el.adminPhone}
+										</a>
+									</div>
 
+									<Link href={`/${el.id}`}>
 										<Button
 											variant='contained'
 											fullWidth
-											className='bg-yellow-400 text-black hover:bg-yellow-500 hover:scale-105 hover:shadow-lg transition-all duration-300 font-bold py-2'
+											sx={{
+												backgroundColor: 'transparent',
+												// border: '1px',
+												// backgroundColor: '#FDC700',
+												color: 'black',
+												fontWeight: 'bold',
+												'&:hover': {
+													backgroundColor: '#FDD500',
+													transform: 'scale(1.05)',
+												},
+												transition: 'all 0.3s ease',
+												boxShadow: '0px 0px 2px #FDC700',
+												borderRadius: 2,
+												py: 1,
+											}}
 										>
 											Подробнее
 										</Button>
-									</Box>
-								</CardContent>
-							</Card>
-						</SwiperSlide>
-					))}
-				</Swiper>
-				<Box className='text-center mt-12'>
-					<Link href={'/all-arenas'}>
-						<Button
-							variant='outlined'
-							size='large'
-							className='border-emerald-200 text-emerald-700 hover:bg-emerald-50 bg-transparent hover:scale-105 transition-all duration-300'
-						>
-							Посмотреть все поля
-						</Button>
-					</Link>
-				</Box>
-			</Box>
-		</>
+									</Link>
+								</div>
+							</CardContent>
+						</div>
+					</SwiperSlide>
+				))}
+			</Swiper>
+
+			<div className='text-center mt-12'>
+				<Link href='/all-arenas'>
+					<Button
+						variant='contained'
+						sx={{
+							backgroundColor: '#FDD500',
+							// border: '1px',
+							// backgroundColor: '#FDC700',
+							color: 'black',
+							fontWeight: 'bold',
+							'&:hover': {
+								backgroundColor: 'transparent',
+								// color: '#FDC700',
+								border: '1px solid #FDC700',
+								fontWeight: 'bold',
+								transform: 'scale(1.01)',
+								boxShadow: '0px 0px 2px #FDC700',
+							},
+							transition: 'all 0.3s ease',
+							boxShadow: '0px 0px 2px #FDC700',
+							borderRadius: 2,
+							p: '10px 40px',
+						}}
+						size='large'
+						// className='border-gray-300 text-gray-700 hover:bg-gray-100 hover:scale-105 transition-all duration-300 rounded-lg'
+					>
+						Посмотреть все поля
+					</Button>
+				</Link>
+			</div>
+		</div>
 	)
 }

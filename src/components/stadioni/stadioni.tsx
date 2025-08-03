@@ -1,20 +1,16 @@
 'use client'
 
-import {
-	Box,
-	Typography,
-	Card,
-	CardContent,
-	Button,
-	Chip,
-} from '@mui/material'
+import { Box, Typography, Card, CardContent, Button, Chip } from '@mui/material'
 import {
 	LocationOn as LocationIcon,
+	LocationOn,
+	Phone,
 	Phone as PhoneIcon,
 } from '@mui/icons-material'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function StadioniComp() {
 	const { getData, data } = useHomeStore()
@@ -30,78 +26,82 @@ export default function StadioniComp() {
 					{data
 						.filter(el => el.category == 'stadion')
 						.map(el => (
-							<Card
+							<div
 								key={el.id}
-								className='overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 shadow-lg group cursor-pointer flex flex-col justify-between '
+								className=' rounded-2xl hover:border-[#FDC700]    border-gray-200 border-[1.1px]  transition-all duration-300 overflow-hidden group flex flex-col  h-[75vh]'
 							>
-								<Box className='relative overflow-hidden'>
-									<Image
-									width={100}
-									height={100}
-										src={el.image[0]}
-										alt={el.name[0]}
-										className='w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700'
-									/>
-								</Box>
+								<div className='relative h-[70vh] w-full'>
+									<Link href={`/${el.id}`}>
+										<Image
+											src={el.image[0]}
+											alt={el.name}
+											fill
+											className='object-cover w-full h-full transition-transform duration-500 group-hover:scale-103'
+										/>
+										{/* <div className='absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent'></div> */}
+									</Link>
+								</div>
 
-								<CardContent className='p-6 group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-green-50 transition-all duration-300'>
-									<Box className='flex items-start justify-between mb-3'>
+								<CardContent className='p-6 flex flex-col gap-5 h-full'>
+									<div className='space-y-3 mb-5 flex flex-col justify-between  h-[22vh] '>
 										<Typography
 											variant='h6'
-											className='text-xl font-semibold text-slate-900 group-hover:text-green-700 transition-colors duration-300'
+											className='text-xl font-bold text-gray-900  transition-colors'
 										>
 											{el.name}
 										</Typography>
-									</Box>
 
-									<Box className='flex items-center text-slate-600 mb-4 group-hover:text-green-600 transition-colors duration-300'>
-										<LocationIcon className='text-lg mr-1' />
-										<Typography className='text-sm'>{el.location}</Typography>
-									</Box>
+										<div className='flex items-start text-sm text-gray-600'>
+											<LocationOn className='text-yellow-500 mr-2 mt-0.5' />
+											<span>{el.location}</span>
+										</div>
 
-									<Box className='flex flex-wrap gap-2 mb-4'>
-										{el.features.map((feature: string) => (
-											<Chip
-												key={feature}
-												label={feature}
-												size='small'
-												className='text-xs bg-slate-100 text-slate-700 hover:bg-green-100 hover:text-green-700 transition-all duration-300 hover:scale-105'
-											/>
-										))}
-									</Box>
+										<div className='flex flex-wrap gap-2'>
+											{el.features.map((feature: string) => (
+												<Chip
+													key={feature}
+													label={feature}
+													size='small'
+													className='bg-yellow-100 text-yellow-800 hover:bg-yellow-200 transition-all duration-200 text-xs'
+												/>
+											))}
+										</div>
+									</div>
 
-									<Box className='space-y-3'>
-										<Box className='flex items-center justify-between'>
-											{/* <Box className='flex items-center space-x-2'>
-											<Typography className='text-2xl font-bold text-green-600 group-hover:text-green-500 transition-colors duration-300'>
-												{el.price}₽
-											</Typography>
-											<Typography className='text-sm text-slate-500'>
-												/час
-											</Typography>
-										</Box> */}
-										</Box>
+									<div className='mt-auto space-y-4'>
+										<div className='flex items-center gap-2 text-sm font-medium   p-3 rounded-xl '>
+											<Phone fontSize='small' />
+											<a href={`tel:${el.adminPhone}`} className='no-underline'>
+												{el.adminPhone}
+											</a>
+										</div>
 
-										<Box className='bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200'>
-											<Box
-												component='a'
-												className='flex items-center space-x-2 text-green-700 hover:text-green-800 font-semibold transition-all duration-300 no-underline'
+										<Link href={`/${el.id}`}>
+											<Button
+												variant='contained'
+												fullWidth
+												sx={{
+													backgroundColor: 'transparent',
+													// border: '1px',
+													// backgroundColor: '#FDC700',
+													color: 'black',
+													fontWeight: 'bold',
+													'&:hover': {
+														backgroundColor: '#FDD500',
+														transform: 'scale(1.05)',
+													},
+													transition: 'all 0.3s ease',
+													boxShadow: '0px 0px 2px #FDC700',
+													borderRadius: 2,
+													py: 1,
+												}}
 											>
-												<PhoneIcon className='text-lg' />
-												<Typography>{el.adminPhone}</Typography>
-											</Box>
-										</Box>
-
-										<Button
-											variant='contained'
-											fullWidth
-											className='bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 hover:scale-102 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-[0.5s] ease-in-out'
-										>
-											Подробнее
-										</Button>
-									</Box>
+												Подробнее
+											</Button>
+										</Link>
+									</div>
 								</CardContent>
-							</Card>
+							</div>
 						))}
 				</Box>
 			</Box>

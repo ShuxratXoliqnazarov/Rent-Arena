@@ -27,11 +27,12 @@
 }
 
 .sec_5 {
-	margin: 50px auto;
+	margin: 0px auto;
+	margin-top: 120px;
 }
 
 .footzal_art {
-	background-image: url('/assets/footzall.jpeg');
+	background-image: url('/assets/footzall1.webp');
 	background-repeat: no-repeat;
 	background-size: cover;
 	transition: all 0.3s ease;
@@ -49,7 +50,7 @@
 }
 
 .mini_art {
-	background-image: url('/assets/mini_stad.jpeg');
+	background-image: url('/assets/mini.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	transition: all 0.3s ease;

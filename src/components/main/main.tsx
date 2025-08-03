@@ -31,24 +31,21 @@ export default function Main() {
 	const slides = [
 		{
 			id: 1,
-			image: '/assets/bg-of-arena.jpg',
+			image: '/assets/bg-yandex3.jpg',
 			title: t('first_baner_title'),
-			description:
-				'Мгновенное бронирование мини-стадионов и спортивных площадок рядом с вами. Легко, быстро и удобно.',
+			description: t('first_banner_subtitle'),
 		},
 		{
 			id: 2,
-			image: '/assets/bg-of-arena2.webp',
-			title: 'Играйте в Любую Погоду',
-			description:
-				'Открытые и закрытые площадки доступны для бронирования круглый год. Выберите свой идеальный вариант.',
+			image: '/assets/bg-yandex2.webp',
+			title: t('second_baner_title'),
+			description: t('second_banner_subtitle'),
 		},
 		{
 			id: 3,
-			image: '/assets/bg-of-arena3.jpeg',
-			title: 'Соберите Команду, Забронируйте Поле',
-			description:
-				'Идеальное место для тренировок, дружеских матчей и турниров. Начните играть уже сегодня!',
+			image: '/assets/bg-yandex1.jpg',
+			title: t('third_baner_title'),
+			description: t('third_banner_subtitle'),
 		},
 	]
 
@@ -59,7 +56,7 @@ export default function Main() {
 	return (
 		<>
 			<main>
-				<section className='sec_1 relative md:max-w-[1200px] md:m-auto w-full h-[600px] md:h-[75vh] overflow-hidden rounded-[25px]'>
+				<section className='sec_1 relative md:max-w-[1200px] md:m-auto w-full h-[600px] md:h-[75vh] overflow-hidden md:rounded-[25px]'>
 					<Swiper
 						modules={[Navigation, Pagination, Autoplay]}
 						spaceBetween={10}
@@ -73,14 +70,14 @@ export default function Main() {
 						className='w-full h-full'
 					>
 						{slides.map(slide => (
-							<SwiperSlide key={slide.id} className='rounded-[25px]'>
+							<SwiperSlide key={slide.id} className='md:rounded-[25px]'>
 								<div className='relative w-full h-full'>
 									<div
-										className='absolute inset-0 bg-cover bg-center rounded-[25px]'
+										className='absolute inset-0 bg-cover bg-center md:rounded-[25px]'
 										style={{ backgroundImage: `url('${slide.image}')` }}
 										aria-label={slide.title}
 									></div>
-									<div className='absolute inset-0 bg-black/60 rounded-[25px]' />
+									<div className='absolute inset-0 bg-black/60 md:rounded-[25px]' />
 
 									<div className='absolute inset-0 z-10 md:w-[50%] flex flex-col items-start justify-center md:p-5 md:ml-[50px] md:mt-[70px] gap-5'>
 										<h1 className='text-white text-4xl md:text-6xl font-bold drop-shadow-xl animate-fadeIn'>
@@ -89,14 +86,15 @@ export default function Main() {
 										<p className='text-gray-200 mt-4 text-base md:text-lg leading-relaxed max-w-xl drop-shadow-md animate-fadeIn delay-200'>
 											{slide.description}
 										</p>
-										<Button
-											asChild
-											variant='outline'
-											size='lg'
-											className='btn relative z-20 bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
-										>
-											<Link href='/stadiums'>Посмотреть Стадионы</Link>
-										</Button>
+									
+											<Button
+												asChild
+												variant='outline'
+												size='lg'
+												className='btn relative z-20 bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
+											>
+												<Link href='/all-arenas'>{t('hero_banner_btn')}</Link>
+											</Button>
 									</div>
 								</div>
 							</SwiperSlide>
@@ -108,11 +106,9 @@ export default function Main() {
 
 				<section className='  sec_4 md:max-w-[1200px] md:m-auto flex flex-col gap-5'>
 					<h1 className='text-center md:text-[40px] text-[37px] font-semibold'>
-						Выбери формат игры
+						{t('sec_3_title')}
 					</h1>
-					<p className='text-center text-[20px]'>
-						Найди свою игру — в зале или на свежем воздухе
-					</p>
+					<p className='text-center text-[20px]'>{t('sec_3_subtitle')}</p>
 
 					<div className=' flex md:flex-row justify-between mt-10 flex-col gap-8 md:gap-0'>
 						<aside className='md:w-[45%] w-[100%]'>
@@ -120,7 +116,7 @@ export default function Main() {
 								<article className='footzal_art h-[27vh] md:h-[35vh] rounded-[20px] relative group'>
 									<div className='absolute w-[100%] bg-black/40 h-[27vh] md:h-[35vh] text-white font-bold  rounded-[20px]'>
 										<h1 className='md:text-[45px] text-[37px] text-center mt-[70px] group-hover:text-[#FDC700] transition-all duration-500 ease-in-out '>
-											Футзалы
+											{t('footzali')}
 										</h1>
 									</div>
 								</article>
@@ -132,7 +128,7 @@ export default function Main() {
 								<article className='mini_art  border h-[27vh] md:h-[35vh] rounded-[20px] relative group'>
 									<div className='absolute w-[100%] bg-black/15 h-[27vh] md:h-[35vh] text-white font-bold  rounded-[20px]'>
 										<h1 className='md:text-[45px] text-[37px] text-center mt-[70px]  group-hover:text-[#FDC700] transition-all duration-500 ease-in-out'>
-											Мини стадионы
+											{t('mini')}
 										</h1>
 									</div>
 								</article>
@@ -143,11 +139,10 @@ export default function Main() {
 
 				<section className='sec_3 md:max-w-[1200px] md:m-auto flex flex-col gap-10'>
 					<h1 className='md:text-[50px] text-[40px] text-center font-semibold'>
-						Лучшие поля
+						{t('sec_4_title')}
 					</h1>
 					<p className='text-center text-[20px]'>
-						Выбери из лучших футбольных полей с отличными отзывами и современным
-						оборудованием
+						{t('sec_4_subtitle')}
 					</p>
 
 					<ArenaSwip />
@@ -155,12 +150,10 @@ export default function Main() {
 
 				<section className='sec_5 md:max-w-[1200px] flex flex-col gap-5 '>
 					<h1 className='text-center md:text-[40px] text-[36px] font-semibold'>
-						Три простых шага до игры
+						{t('sec_5_title')}
 					</h1>
 					<p className='text-center md:text-[20px] text-[18px]'>
-						Процесс бронирования максимально упрощен.{' '}
-						<br className='hidden md:block' /> Всего несколько кликов отделяют
-						вас от игры на лучших полях города.
+						{t('sec_5_subtitle')}
 					</p>
 					<Steps />
 				</section>
@@ -168,4 +161,3 @@ export default function Main() {
 		</>
 	)
 }
-

@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, use, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@mui/material'
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined'
@@ -9,6 +9,7 @@ import Link from 'next/link'
 import ClientMenu from '../menu/menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import LanguageSwitcher from '../languageSwitcher/languageSwitcher'
+import { useTranslations } from 'next-intl'
 
 type Props = {
 	children: ReactNode
@@ -21,10 +22,12 @@ const Layout = ({ children }: Props) => {
 		setOpen(!open)
 	}
 
+	const t = useTranslations('nav')
+
 	return (
 		<>
 			<header className='bg-black/5 backdrop-blur-sm fixed w-full top-0 z-50'>
-				<nav className='md:max-w-[1400px] md:m-auto flex flex-row justify-between items-center'>
+				<nav className='md:max-w-[1200px] md:m-auto flex flex-row justify-between items-center'>
 					<Image
 						src={'/assets/logo.png'}
 						width={100}
@@ -33,26 +36,67 @@ const Layout = ({ children }: Props) => {
 						className='w-[90px] h-[90px]'
 					/>
 					<div className='md:flex items-center gap-5 hidden'>
-						<p className='text-[20px] hover:text-[#459A65] hover:border-b hover:border-[#459A65]'>
-							Поля
-						</p>
+						<Link href={'/'} className=''>
+							<Button
+								sx={{
+									border: 'none',
+									fontSize: '12px',
+									fontWeight: 'bold',
+									color: 'black',
+									'&:hover': {  color: '#FDC700' },
+									// '&:hover': { border: '1px solid #FDC700' },
+								}}
+							>
+								{t('home')}
+							</Button>
+						</Link>
+
+						<Link href={'/all-arenas'} className=''>
+							<Button
+								sx={{
+									border: 'none',
+									fontSize: '12px',
+									fontWeight: 'bold',
+									color: 'black',
+									'&:hover': {  color: '#FDC700' },
+									// '&:hover': { border: '1px solid #FDC700' },
+								}}
+							>
+								{t('all_stadions')}
+							</Button>
+						</Link>
+
+						<Link href={'/footzali'} className=''>
+							<Button
+								sx={{
+									border: 'none',
+									fontSize: '12px',
+									fontWeight: 'bold',
+									color: 'black',
+									'&:hover': { color: '#FDC700' },
+									// '&:hover': { border: '1px solid #FDC700' },
+								}}
+							>
+								{t('footzali')}
+							</Button>
+						</Link>
+
+						<Link href={'/stadioni'} className=''>
+							<Button
+								sx={{
+									border: 'none',
+									fontSize: '12px',
+									fontWeight: 'bold',
+									color: 'black',
+									'&:hover': { color: '#FDC700' },
+									// '&:hover': { border: '1px solid #FDC700' },
+								}}
+							>
+								{t('stadions')}
+							</Button>
+						</Link>
 
 						<LanguageSwitcher />
-
-						<div className='flex items-center gap-5'>
-							<Button
-								className='btn bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
-								sx={{ border: '1px solid black', color: 'black' }}
-							>
-								Войти
-							</Button>
-							<Button
-								className='btn bg-yellow-400 text-black px-6 py-3 rounded-md hover:bg-yellow-500 transition hover:scale-105 shadow-md animate-fadeIn delay-300'
-								sx={{ backgroundColor: '#FDC700', color: 'black' }}
-							>
-								Регистрация
-							</Button>
-						</div>
 					</div>
 
 					<div className='block md:hidden'>

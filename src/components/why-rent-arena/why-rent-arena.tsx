@@ -1,40 +1,40 @@
 import { Box } from '@mui/material'
 import { ShineBorder } from '../shine-border/shine-border'
 import Image from 'next/image'
-
-const reasons = [
-	{
-		id: 1,
-		title: 'Быстрое онлайн-бронирование',
-		desc: 'Вы можете забронировать мини-стадион прямо с сайта всего за несколько кликов — быстро, удобно и без звонков.',
-		image: '/assets/quickBook.jpg',
-	},
-	{
-		id: 2,
-		title: 'Умный поиск и фильтрация',
-		desc: 'Система фильтров и поиска позволяет мгновенно находить поля по району, цене, покрытию и другим удобствам.',
-		image: '/assets/filt.png',
-	},
-	{
-		id: 3,
-		title: 'Проверенные площадки с отзывами',
-		desc: 'Все стадионы проходят проверку нашей командой, а честные отзывы пользователей помогают сделать правильный выбор.',
-		image: '/assets/cheked.png',
-	},
-]
+import { useTranslations } from 'next-intl'
 
 export default function WhyChooseUs() {
+	const t = useTranslations('home')
+
+	const reasons = [
+		{
+			id: 1,
+			title: t('first_art_sec_2_title'),
+			desc: t('first_art_sec_2_subtitle'),
+			image: '/assets/quickBook.jpg',
+		},
+		{
+			id: 2,
+			title: t('second_art_sec_2_title'),
+			desc: t('second_art_sec_2_subtitle'),
+			image: '/assets/filt.png',
+		},
+		{
+			id: 3,
+			title: t('third_art_sec_2_title'),
+			desc: t('third_art_sec_2_subtitle'),
+			image: '/assets/cheked.png',
+		},
+	]
+
 	return (
 		<section className='md:max-w-[1200px] md:m-auto why'>
 			<div className='max-w-6xl mx-auto text-center'>
 				<h2 className='text-4xl md:text-[40px] font-bold mb-4'>
-					Почему выбирают{' '}
+					{t('sec_2_title')}
 					<span className='font-extrabold text-[#FDC700]'>RentArena?</span>
 				</h2>
-				<p className='text-gray-600 mb-12'>
-					Мы делаем всё, чтобы бронирование арен стало быстрым, удобным и
-					безопасным
-				</p>
+				<p className='text-gray-600 mb-12'>{t('sec_2_subtitle')}</p>
 
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
 					{reasons.map(reason => (
