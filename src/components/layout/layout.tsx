@@ -126,9 +126,18 @@ const Layout = ({ children }: Props) => {
 									'aria-labelledby': 'basic-button',
 								}}
 							>
-								<MenuItem onClick={handleClose}>Профиль</MenuItem>
-								<MenuItem onClick={handleClose}>Аккаунт</MenuItem>
-								<MenuItem onClick={handleClose}>Выход</MenuItem>
+								<MenuItem onClick={handleClose}>
+									<Link href={'/'}>{t('home')}</Link>
+								</MenuItem>
+								<MenuItem onClick={handleClose}>
+									<Link href='/all-arenas'> {t('all_stadions')}</Link>{' '}
+								</MenuItem>
+								<MenuItem onClick={handleClose}>
+									<Link href='/footzali'> {t('footzali')} </Link>{' '}
+								</MenuItem>
+								<MenuItem onClick={handleClose}>
+									<Link href='/stadioni'> {t('stadions')}</Link>{' '}
+								</MenuItem>
 							</Menu>
 						</div>
 					</div>
