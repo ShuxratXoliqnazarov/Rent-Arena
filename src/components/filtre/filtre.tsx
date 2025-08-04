@@ -47,7 +47,7 @@ export default function SidebarFilters({
   }
 
   return (
-    <div className=" md:w-[40%] p-5 rounded-2xl shadow-lg bg-white border border-gray-200 sticky top-6 transition-all duration-300">
+    <div className=" md:w-[40%] p-5 rounded-2xl  bg-white  sticky top-6 transition-all duration-300">
       <Typography variant="h6" className="mb-4 font-bold text-gray-800">
         Фильтры
       </Typography>

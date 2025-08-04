@@ -1,8 +1,8 @@
 'use client'
 
-import { ReactNode, use, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Image from 'next/image'
-import { Button } from '@mui/material'
+import { Button, Menu, MenuItem } from '@mui/material'
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined'
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined'
 import Link from 'next/link'
@@ -16,13 +16,18 @@ type Props = {
 }
 
 const Layout = ({ children }: Props) => {
-	const [open, setOpen] = useState(false)
+	const t = useTranslations('nav')
 
-	function toggleOpen() {
-		setOpen(!open)
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+	const open = Boolean(anchorEl)
+
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget)
 	}
 
-	const t = useTranslations('nav')
+	const handleClose = () => {
+		setAnchorEl(null)
+	}
 
 	return (
 		<>
@@ -36,37 +41,35 @@ const Layout = ({ children }: Props) => {
 						className='w-[90px] h-[90px]'
 					/>
 					<div className='md:flex items-center gap-5 hidden'>
-						<Link href={'/'} className=''>
+						<Link href='/'>
 							<Button
 								sx={{
 									border: 'none',
 									fontSize: '12px',
 									fontWeight: 'bold',
 									color: 'black',
-									'&:hover': {  color: '#FDC700' },
-									// '&:hover': { border: '1px solid #FDC700' },
+									'&:hover': { color: '#FDC700' },
 								}}
 							>
 								{t('home')}
 							</Button>
 						</Link>
 
-						<Link href={'/all-arenas'} className=''>
+						<Link href='/all-arenas'>
 							<Button
 								sx={{
 									border: 'none',
 									fontSize: '12px',
 									fontWeight: 'bold',
 									color: 'black',
-									'&:hover': {  color: '#FDC700' },
-									// '&:hover': { border: '1px solid #FDC700' },
+									'&:hover': { color: '#FDC700' },
 								}}
 							>
 								{t('all_stadions')}
 							</Button>
 						</Link>
 
-						<Link href={'/footzali'} className=''>
+						<Link href='/footzali'>
 							<Button
 								sx={{
 									border: 'none',
@@ -74,14 +77,13 @@ const Layout = ({ children }: Props) => {
 									fontWeight: 'bold',
 									color: 'black',
 									'&:hover': { color: '#FDC700' },
-									// '&:hover': { border: '1px solid #FDC700' },
 								}}
 							>
 								{t('footzali')}
 							</Button>
 						</Link>
 
-						<Link href={'/stadioni'} className=''>
+						<Link href='/stadioni'>
 							<Button
 								sx={{
 									border: 'none',
@@ -89,7 +91,6 @@ const Layout = ({ children }: Props) => {
 									fontWeight: 'bold',
 									color: 'black',
 									'&:hover': { color: '#FDC700' },
-									// '&:hover': { border: '1px solid #FDC700' },
 								}}
 							>
 								{t('stadions')}
@@ -99,15 +100,37 @@ const Layout = ({ children }: Props) => {
 						<LanguageSwitcher />
 					</div>
 
-					<div className='block md:hidden'>
-						<Button color='inherit' onClick={toggleOpen}>
-							<MenuIcon
+					{/* <MenuIcon
 								sx={{ fontSize: '30px' }}
 								className='hover:text-[#0DA366]'
-							/>
-						</Button>
+							/> */}
+					<div className='block md:hidden'>
+						<div>
+							<Button
+								id='basic-button'
+								aria-controls={open ? 'basic-menu' : undefined}
+								aria-haspopup='true'
+								aria-expanded={open ? 'true' : undefined}
+								onClick={handleClick}
+								variant='contained'
+							>
+								Открыть меню
+							</Button>
 
-						{open && <ClientMenu />}
+							<Menu
+								id='basic-menu'
+								anchorEl={anchorEl}
+								open={open}
+								onClose={handleClose}
+								MenuListProps={{
+									'aria-labelledby': 'basic-button',
+								}}
+							>
+								<MenuItem onClick={handleClose}>Профиль</MenuItem>
+								<MenuItem onClick={handleClose}>Аккаунт</MenuItem>
+								<MenuItem onClick={handleClose}>Выход</MenuItem>
+							</Menu>
+						</div>
 					</div>
 				</nav>
 			</header>
