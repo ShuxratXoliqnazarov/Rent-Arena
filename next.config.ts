@@ -3,7 +3,11 @@ import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
 	images: {
-		domains: ['sportzone.tj'],
+		remotePatterns: [
+			{ protocol: 'https', hostname: 'sportzone.tj' },
+			// Фото, загруженные админами в Supabase Storage
+			{ protocol: 'https', hostname: '*.supabase.co' },
+		],
 	},
 }
 

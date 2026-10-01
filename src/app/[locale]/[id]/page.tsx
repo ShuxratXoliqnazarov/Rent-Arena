@@ -1,15 +1,17 @@
 'use client'
 
-import { Card, CardContent, CardMedia, Chip, Button } from '@mui/material'
-import PhoneIcon from '@mui/icons-material/Phone'
+import { Card, CardContent, CardMedia, Chip, CircularProgress } from '@mui/material'
 import MapIcon from '@mui/icons-material/Map'
 import { useHomeStore } from '@/store/home/homeStore'
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+import SlotPicker from '@/components/booking/slot-picker'
 
 export default function ByIdPage() {
-	const { getData, data } = useHomeStore()
+	const t = useTranslations('arena')
+	const { getData, data, loading } = useHomeStore()
 
 	const [img, setImg] = useState('')
 
@@ -20,7 +22,11 @@ export default function ByIdPage() {
 	const arena = data.find(el => el.id == id)
 
 	if (!arena) {
-		return <div>Загрузка данных...</div>
+		return (
+			<div className='flex justify-center py-40'>
+				{loading ? <CircularProgress sx={{ color: '#FDC700' }} /> : <p>{t('not_found')}</p>}
+			</div>
+		)
 	}
 
 	return (
@@ -30,7 +36,7 @@ export default function ByIdPage() {
 				style={{ margin: '120px auto' }}
 			>
 				<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 '>
-					<div className='lg:col-span-2 space-y-6'>
+					<div className='lg:col-span-2 space-y-6 min-w-0'>
 						<Card
 							className='overflow-hidden  flex flex-col gap-5'
 							style={{ padding: '16px' }}
@@ -71,23 +77,25 @@ export default function ByIdPage() {
 						<Card>
 							<CardContent className='p-6'>
 								<h2 className='text-2xl font-bold text-slate-900 mb-4'>
-									Описание
+									{t('description')}
 								</h2>
 
 								<div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-6'>
 									<div className='text-center p-4 bg-green-50 rounded-lg'>
-										<div className='font-semibold text-slate-900'>Покрытие</div>
+										<div className='font-semibold text-slate-900'>
+											{t('coverage')}
+										</div>
 										<p>{arena.description[0]}</p>
 									</div>
 									<div className='text-center p-4 bg-green-50 rounded-lg'>
 										<div className='font-semibold text-slate-900'>
-											Режим работы
+											{t('hours')}
 										</div>
 										<p>{arena.description[1]}</p>
 									</div>
 									<div className='text-center p-4 bg-green-50 rounded-lg'>
 										<div className='font-semibold text-slate-900'>
-											Оплата за аренду
+											{t('payment')}
 										</div>
 										<p>{arena.description[2]}</p>
 									</div>
@@ -96,8 +104,8 @@ export default function ByIdPage() {
 						</Card>
 					</div>
 
-					<div className='space-y-6'>
-						<Card className='sticky top-24'>
+					<div className='space-y-6 min-w-0'>
+						<Card>
 							<CardContent className='p-6'>
 								<div className='flex items-start justify-between mb-4'>
 									<h1 className='text-3xl font-bold text-slate-900'>
@@ -120,24 +128,7 @@ export default function ByIdPage() {
 									))}
 								</div>
 
-								<div className='bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200 mb-6'>
-									<h3 className='font-semibold text-slate-900 mb-2 text-center'>
-										Для бронирования
-									</h3>
-
-									<Button
-										href={`tel:${arena.adminPhone}`}
-										startIcon={<PhoneIcon />}
-										className='w-full bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-semibold'
-									>
-										Позвонить {arena.adminPhone}
-									</Button>
-								</div>
-
-								<div className='text-xs text-slate-500 text-center'>
-									Позвоните администратору для уточнения свободного времени и
-									бронирования поля
-								</div>
+								<SlotPicker arena={arena} />
 							</CardContent>
 						</Card>
 					</div>

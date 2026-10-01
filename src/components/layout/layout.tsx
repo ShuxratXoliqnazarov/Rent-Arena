@@ -9,6 +9,7 @@ import Link from 'next/link'
 import ClientMenu from '../menu/menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import LanguageSwitcher from '../languageSwitcher/languageSwitcher'
+import AuthNav from '../auth/auth-nav'
 import { useTranslations } from 'next-intl'
 
 type Props = {
@@ -98,6 +99,7 @@ const Layout = ({ children }: Props) => {
 						</Link>
 
 						<LanguageSwitcher />
+						<AuthNav />
 					</div>
 
 					{/* <MenuIcon
@@ -114,7 +116,7 @@ const Layout = ({ children }: Props) => {
 								onClick={handleClick}
 								variant='contained'
 							>
-								Открыть меню
+								{t('menu')}
 							</Button>
 
 							<Menu
@@ -138,6 +140,7 @@ const Layout = ({ children }: Props) => {
 								<MenuItem onClick={handleClose}>
 									<Link href='/stadioni'> {t('stadions')}</Link>{' '}
 								</MenuItem>
+								<AuthNav vertical onNavigate={handleClose} />
 							</Menu>
 						</div>
 					</div>

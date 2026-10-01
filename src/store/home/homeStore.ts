@@ -1,32 +1,27 @@
-import axios from 'axios'
 import { create } from 'zustand'
+import { supabase } from '@/lib/supabase/client'
+import { Arena, ArenaRow, toArena } from '@/lib/types'
 
-interface Arena {
-	id: string | null
-	name: string
-	adminPhone: string | number
-	location: string
-	features: string[]
-	image: string[]
-	category: string
-	description: string[]
-}
 interface HomeStore {
 	data: Arena[]
+	loading: boolean
 	getData: () => void
 }
 
 export const useHomeStore = create<HomeStore>(set => ({
 	data: [],
+	loading: true,
 	getData: async () => {
-		try {
-			const response = await axios.get(
-				'https://629d11159dced364.mokky.dev/arena'
-			)
-			// console.log('responce: ', response)
-			set({ data: response.data })
-		} catch (error) {
+		const { data, error } = await supabase
+			.from('arenas')
+			.select('*')
+			.eq('is_published', true)
+			.order('id')
+		if (error) {
 			console.log(error)
+			set({ loading: false })
+			return
 		}
+		set({ data: (data as ArenaRow[]).map(toArena), loading: false })
 	},
 }))
